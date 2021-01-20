@@ -7,17 +7,20 @@
 
 # Notes on Refactoring
 # Singleton 
-Singleton is a design pattern that ensures that a class has only one instance to provide global and unique access to that instance.
+The Singleton method is a design pattern that ensures that a class has only one instance to provide global and unique access to that instance.
 This standard was implemented in the com/aps/util/TextCmd.java class. It was necessary because this class contains almost all the texts of the program and it is initialized only once for the correct execution of the program.
 
 # Facade
-Facade provides an interface to access a set of similar classes to facilitate their treatment and use for other classes.
-Facade was used in the com/aps/controller/APS.java class to serve as an interface between the application controls that were (based on generics and reflects) and the program's View.
+The Facade method provides an interface to access a set of similar classes to facilitate their treatment and use for other classes.
+The Facade was used in the com/aps/controller/APS.java class to serve as an interface between the application controls that were (based on generics and reflects) and the program's View.
 
-# Factore Method
-Factory method was used in the add_test function of the com/aps/controller Manage.java class
+# Factory Method
+The Factory method standard was implemented in the add_test function of the com/aps/controller/Manage.java class. As each child class of Manage can have different checks to accept the addition of its data, I found it interesting to create this function and make it be called by the add function for each addition requested by the user.
+
+Note: I did not implement the add_test() function as an abstract or interface because most classes that are children of Manage will use it without having to override its content.
 
 # MVC
+MVC is a software architecture standard that separates the application into 3 layers. The user interaction layer (view), the data manipulation layer (model) and the control layer (controller). I used MVC to develop this whole project.
 
 # About
 This project consists of an academic productivity management system in which production management can be done research laboratory, including information on research projects and collaborators.

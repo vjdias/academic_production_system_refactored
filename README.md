@@ -15,9 +15,9 @@ The Facade method provides an interface to access a set of similar classes to fa
 The Facade was used in the com/aps/controller/APS.java class to serve as an interface between the application controls that were (based on generics and reflects) and the program's View.
 
 # Factory Method
-Factory Method is a design pattern that provides an interface for creating objects in a superclass, but allows subclasses to change the steps of creating the objects.
+The Factory Method is a design pattern that provides an interface for creating objects in a superclass, but allows subclasses to change the steps of creating the objects.
 
-The Factory method standard was implemented in the add_test function of the com/aps/controller/Manage.java class. As each child class of Manage can have different checks to accept the addition of its data, I found it interesting to create this function and make it be called by the add function for each addition requested by the user.
+The Factory Method standard was implemented in the add_test function of the com/aps/controller/Manage.java class. As each child class of Manage can have different checks to accept the addition of its data, I found it interesting to create this function and make it be called by the add function for each addition requested by the user.
 
 Note: I did not implement the add_test() function as an abstract or interface because most classes that are children of Manage will use it without having to override its content.
 

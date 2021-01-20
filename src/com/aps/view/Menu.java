@@ -20,11 +20,7 @@ public class Menu {
 	private String panel = "home";
 	private String model = "";
 	private Boolean intro = true;
-	
-	int id_project = 0;
-	int id_collab = 0;
 
-	
 	APS aps;
 
 	public Menu(Boolean test) {
@@ -33,7 +29,8 @@ public class Menu {
 		if (test)
 			aps.test();
 		
-		text_cmd = new TextCmd();
+		text_cmd = TextCmd.Instance();
+		
 		text_cmd.clear_text();
 		text_cmd.add("write", ">");
 		text_cmd.add("welcome", "Academic Productivity System\nSeja bem vindo!");
@@ -70,6 +67,11 @@ public class Menu {
 				"Criar um novo modelo para a associação", 
 				"Adicionar a um modelo existente", 
 				"Não adicionar")));
+		
+		text_cmd.add("manage_opt_add_fk_opt2", "Deseja adicionar um novo modelo?", new ArrayList<String>(Arrays.asList(
+				"Criar um novo modelo para a associação", 
+				"Não adicionar")));
+		
 		text_cmd.add("manage_opt_add_sucess", " adicionado com sucesso!");
 		text_cmd.add("manage_opt_add_association", "\nDigite o Id(s) que deseja associar a este modelo.");
 		
@@ -145,16 +147,16 @@ public class Menu {
 			text_cmd._n(2);
 			break;
 		case 0:
-			intro = true;
+			intro = true;			
+			text_cmd.clear_text();
 			text_cmd.opt_selected(panel, text_cmd.getHistoryInput(0));
 			panel = "manage_list";
-			text_cmd.clear_text();
 			break;
 		case 1:
 			intro = true;
+			text_cmd.clear_text();
 			text_cmd.opt_selected(panel, text_cmd.getHistoryInput(0));
 			panel = "update_project_home";
-			text_cmd.clear_text();
 			break;
 		case 2:
 			intro = false;
@@ -304,9 +306,7 @@ public class Menu {
 		
 		if (aps.get_size("Project") > 0) {
 			text_cmd.text(panel);
-			aps.show_all("Project",8, true);
-//			System.out.print(">Id:");
-			
+			aps.show_all("Project",8, true);		
 			text_cmd.textln("write","Id:",true,0);
 			cmd = reader.readLine();
 			text_cmd._n(1);
@@ -434,7 +434,6 @@ public class Menu {
 		Boolean error = true;
 		Map<String, String> fields_and_values = new HashMap<String, String>();
 
-//		Boolean first_fk = false;
 		int id_model = 0;
 		for (String namefields: aps.listFields(model, false, false)) { 
 			error = true;
@@ -492,12 +491,25 @@ public class Menu {
 							}
 							
 						} else {
-							//fields_and_values.put(namefields, "0");
+							panel = "manage_opt_add_fk_opt2";
+							text_cmd.text(panel);
+							text_cmd.opt(panel);
+							cmd = reader.readLine();
+							
+							switch (text_cmd.selected(panel, cmd)) {
+							case -1:
+								break;
+							case 0:
+								fields_and_values.put(namefields, String.valueOf(panel_manage_opt_add(Util.fk_name(namefields, true))));
+								break;
+							case 1:
+								error = false;
+								break;
+							}
 							text_cmd._n(1);
 							error = false;
 
 						}
-//9						first_fk = false;
 						
 					} else if (!namefields.toLowerCase().contains("id"))  {
 						text_cmd.textln("write",Util.StringRemoveGet_(namefields)+":\n",false, 0);
@@ -516,7 +528,7 @@ public class Menu {
 			text_cmd._n(1);
 		}
 		id_model = aps.invoke_and_add(model, fields_and_values);
-		if (id_model >= 0) {
+		if (id_model < 0) {
 			text_cmd.text("manage_opt_error");
 			text_cmd.opt("0_or_1");
 			cmd = reader.readLine();				

@@ -5,12 +5,6 @@ import java.util.Arrays;
 
 public class Util {
 	
-	public static String StringCapitalize(String s) {
-		if (s == null || s.isBlank())  
-			return s;
-		return s.substring(0, 1).toUpperCase() + s.substring(1);
-	}
-	
 	public static String StringGettify(String common_word, int length_ignore) {
 		String gettify = "";
 		String gettify_ = "";
@@ -91,16 +85,6 @@ public class Util {
 		return null;
 	}
 	
-	public static boolean verify_str2integer(String str) {
-		try {
-			Integer.parseInt(str);
-			return true;
-		} catch (Exception e) {
-			System.out.println("Valor digitado não é numerico, adicione um valor valido.");
-		}
-		return false;
-	}
-	
 	public static String fk_name(String fk, boolean singular) {
 		String[] _names = fk.split("_");	
 		String name = StringRemoveGet_(_names[_names.length - 2]);
@@ -115,10 +99,6 @@ public class Util {
 
 		return name;
 	}
-
-	public static boolean isEclipse() {
-	    return System.getenv("in_production") == null;
-	}	
 	
 	public static String verify_separator(String text) {
 		if (text.contains(",")) {

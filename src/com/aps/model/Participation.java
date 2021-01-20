@@ -1,7 +1,7 @@
 package com.aps.model;
 
 public class Participation implements Model {
-	private int id;
+	private Integer id;
 	private int project_fk;
 	private Boolean active;
 	private int start_year;

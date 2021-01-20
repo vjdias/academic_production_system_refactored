@@ -31,10 +31,12 @@ public class Manage<T extends Model> {
 				((Model) obj).setId(obj_list.size());
 				if (!obj_list.add(obj))
 					return -1;
+				return obj_list.size()-1;
 			} else {
 				try {
 					obj_list.set(((Model) obj).getId(), obj);
 				} catch (IndexOutOfBoundsException e) {
+					System.err.println(e);
 					return -2;
 				}
 			}

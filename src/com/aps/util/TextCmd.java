@@ -10,27 +10,31 @@ public class TextCmd {
 	private String text;
 	private ArrayList<String> opt;
 	private ArrayList<Integer> history_input;
-	private String last_name;
 	private Map<String, TextCmd> all_texts;
-
-	public TextCmd() {
-		last_name = "";
+	private static TextCmd text_cmd;
+	
+	private TextCmd() {
 		all_texts = new HashMap<String, TextCmd>();
 		history_input = new ArrayList<Integer>();
 	}
 	
-	public TextCmd(String name, String text) {
-		last_name = "";
+	private TextCmd(String name, String text) {
 		this.name = name;
 		this.text = text;
 	}
 	
-	public TextCmd(String name, String text, ArrayList<String> opt) {
-		last_name = "";
+	private TextCmd(String name, String text, ArrayList<String> opt) {
 		this.name = name;
 		this.text = text;
 		this.opt = opt;
 	}	
+	
+	public static TextCmd Instance() {
+		if (text_cmd == null) {
+			text_cmd = new TextCmd();
+		}
+		return text_cmd;
+	}
 	
 	public void add(String name, String text, ArrayList<String> cmd) {
 		all_texts.put(name, new TextCmd(name, text, cmd));
@@ -63,12 +67,10 @@ public class TextCmd {
 
 	public void text(String name) {
 		System.out.println(this.all_texts.get(name).text);		
-		last_name = name;
 	}
 
 	public void text(String name, int value) {
 		System.out.println(this.all_texts.get(name).text+value);		
-		last_name = name;
 	}
 	
 	public void text(String name, String value, Boolean pos) {
@@ -77,8 +79,6 @@ public class TextCmd {
 		} else {
 			System.out.println(value+this.all_texts.get(name).text);			
 		}
-		
-		last_name = name;
 	}
 	
 	public void opt(String name) {
@@ -117,14 +117,6 @@ public class TextCmd {
 		this.name = name;
 	}
 
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
 	public String getOpt(String name, int id) {
 		return all_texts.get(name).opt.get(id);
 	}
@@ -143,22 +135,6 @@ public class TextCmd {
 
 	public void addOpt(String name, String opt) {
 		all_texts.get(name).opt.add(opt);
-	}
-
-	public Map<String, TextCmd> getAll_texts() {
-		return all_texts;
-	}
-
-	public void setAll_texts(Map<String, TextCmd> all_texts) {
-		this.all_texts = all_texts;
-	}
-
-	public String getLast_name() {
-		return last_name;
-	}
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
 	}
 	
 	public void clear_text() {			

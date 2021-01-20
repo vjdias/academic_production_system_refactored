@@ -21,7 +21,7 @@ public class APS {
 	private String[] models = {"Collaborator", "Orientation", "Participation", "Project", "Publication"};
 		
 	public APS() {
-		manageCollaborator = new Manage<Collaborator>();
+		manageCollaborator = new Manage<Collaborator>();		
 		manageOrientation = new ManageOrientation(manageCollaborator);
 		manageParticipation = new Manage<Participation>();
 		managePublication = new ManagePublication();

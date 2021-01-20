@@ -6,8 +6,18 @@
 * Addition of Factory Method design pattern
 
 # Notes on Refactoring
-* Teste
-** Test
+# Singleton 
+Singleton is a design pattern that ensures that a class has only one instance to provide global and unique access to that instance.
+This standard was implemented in the com/aps/util/TextCmd.java class. It was necessary because this class contains almost all the texts of the program and it is initialized only once for the correct execution of the program.
+
+# Facade
+Facade provides an interface to access a set of similar classes to facilitate their treatment and use for other classes.
+Facade was used in the com/aps/controller/APS.java class to serve as an interface between the application controls that were (based on generics and reflects) and the program's View.
+
+# Factore Method
+Factory method was used in the add_test function of the com/aps/controller Manage.java class
+
+# MVC
 
 # About
 This project consists of an academic productivity management system in which production management can be done research laboratory, including information on research projects and collaborators.

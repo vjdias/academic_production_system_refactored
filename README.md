@@ -1,4 +1,11 @@
-# acadmic_production_system
+# Academic Production System Refactored
+* Bug handling
+* Exception handling
+* Addition of Singleton design pattern
+* Addition of Facade design pattern
+* Addition of Factory Method design pattern
+
+# About
 This project consists of an academic productivity management system in which production management can be done research laboratory, including information on research projects and collaborators.
 
   The program was written using eclipse 2020-09.
